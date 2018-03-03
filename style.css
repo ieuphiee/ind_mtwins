@@ -15,6 +15,13 @@
 
 div#lineChart {
 	border: 1px solid #ccc;
+	width: 50%;
+	display: none;
+}
+
+div#barChart {
+	border: 1px solid #ccc;
+	padding: 100px;
 }
 
 div.tooltip {	

@@ -1,21 +1,21 @@
-var margin = {top: 20, right: 20, bottom: 40, left: 50},
+var margin = {top: 20, right: 20, bottom: 40, left: 150},
 	width = 600 - margin.left - margin.right,
 	height = 400 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal().rangePoints([0, width], 1);
-var y = d3.scale.linear().rangeRound([height, 0]);
+var line_x_scale = d3.scale.ordinal().rangePoints([0, width], 1);
+var line_y_scale = d3.scale.linear().rangeRound([height, 0]);
 
-var xAxis = d3.svg.axis()
-	.scale(x)
+var line_x_axis = d3.svg.axis()
+	.scale(line_x_scale)
 	.orient("bottom");
 
-var yAxis = d3.svg.axis()
-	.scale(y)
+var line_y_axis = d3.svg.axis()
+	.scale(line_y_scale)
 	.orient("left");
 
 var line = d3.svg.line()
-	.x(function(d) { return x(d.Split);})
-	.y(function(d) {return y(d.BA)})
+	.x(function(d) { return line_x_scale(d.Split);})
+	.y(function(d) { return line_y_scale(d.BA)});
 
 var tooltip = d3.select("#lineChart")
 			.append("div")
@@ -23,7 +23,7 @@ var tooltip = d3.select("#lineChart")
 			.style("background-color", "white")
 			.style("opacity", 0); 
 
-var svg = d3.select("#lineChart").append("svg")
+var line_svg = d3.select("#lineChart").append("svg")
 	.attr("width", width + margin.left + margin.right)
 	.attr("height", height + margin.top + margin.bottom)
 	.append("g")
@@ -37,17 +37,17 @@ d3.csv("data.csv", function(error, data) {
 		if (error) throw error;
 	});
 
-	x.domain(data.map(function(d) { return d.Split; }));
-	y.domain([0, d3.max(data, function(d) { return d.BA; })]);
+	line_x_scale.domain(data.map(function(d) { return d.Split; }));
+	line_y_scale.domain([0, d3.max(data, function(d) { return d.BA; })]);
 
-	svg.append("g")
+	line_svg.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis);
+		.call(line_x_axis);
 
-	svg.append("g")
+	line_svg.append("g")
 		.attr("class", "y axis")
-		.call(yAxis)
+		.call(line_y_axis)
 	  .append("text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", -6)
@@ -55,18 +55,18 @@ d3.csv("data.csv", function(error, data) {
 		.attr("text-anchor", "end")
 		.text("Batting Average");
 
-	svg.append("path")
+	line_svg.append("path")
 		.datum(data)
 		.attr("class", "line")
 		.attr("d", line);
 
-	svg.selectAll(".dot")
+	line_svg.selectAll(".dot")
 		.data(data)
 	  .enter().append("circle")
 		.attr("class", "dot")
 		.attr("r", 3.5)
-		.attr("cx", function(d) { return x(d.Split); })
-		.attr("cy", function(d) { return y(d.BA); })
+		.attr("cx", function(d) { return line_x_scale(d.Split); })
+		.attr("cy", function(d) { return line_y_scale(d.BA); })
 	.on("mouseover", function (d) {
 		tooltip.transition()
 			.duration(200)
@@ -94,31 +94,30 @@ function updateLine(player) {
 		if (error) throw error;
 	});
 
-	x.domain(data.map(function(d) { return d.Split; }));
-	y.domain([0, d3.max(data, function(d) { return d.BA; })]);
+	line_x_scale.domain(data.map(function(d) { return d.Split; }));
+	line_y_scale.domain([0, d3.max(data, function(d) { return d.BA; })]);
 	
+	var line_svg = d3.select("#lineChart").transition();
 	
-	var svg = d3.select("#lineChart").transition();
-	
-	svg.select(".line") 
+	line_svg.select(".line") 
 		.duration(750)
 		.attr("d", line(data));
 	
-	svg.select(".x.axis")
+	line_svg.select(".x.axis")
 		.duration(750)
-		.call(xAxis);
+		.call(line_x_axis);
 	
-	svg.select(".y.axis")
+	line_svg.select(".y.axis")
 		.duration(750)
-		.call(yAxis);
+		.call(line_y_axis);
 		
 	d3.selectAll(".dot")
 		.data(data)
 		.transition()
 		.duration(750)
 		.attr("r", 3.5)
-		.attr("cx", function(d) { return x(d.Split); })
-		.attr("cy", function(d) { return y(d.BA); });
+		.attr("cx", function(d) { return line_x_scale(d.Split); })
+		.attr("cy", function(d) { return line_y_scale(d.BA); });
 		
 	
 	
