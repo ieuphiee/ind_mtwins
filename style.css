@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: lightgrey;
+	shape-rendering: crispEdges;
+}
+
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 3px;
+}
+
+div#lineChart {
+	border: 1px solid #ccc;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 50px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: solid #000 1px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
