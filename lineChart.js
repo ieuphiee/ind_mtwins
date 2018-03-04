@@ -47,6 +47,7 @@ d3.csv("data.csv", function(error, data) {
 
 	line_svg.append("g")
 		.attr("class", "y axis")
+		.style("fill", "white")
 		.call(line_y_axis)
 	  .append("text")
 		.attr("transform", "rotate(-90)")
@@ -54,6 +55,8 @@ d3.csv("data.csv", function(error, data) {
 		.attr("dy", "1.2em")
 		.attr("text-anchor", "end")
 		.text("Batting Average");
+		
+	
 
 	line_svg.append("path")
 		.datum(data)
