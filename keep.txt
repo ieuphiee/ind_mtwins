@@ -1,0 +1,21 @@
+<img src="images/bb.png" alt="Bryon Buxton" onClick="updateLine('Byron Buxton')">
+	<img src="images/bd.png" alt="Brian Dozier" onClick="updateLine('Brian Dozier')">
+	<img src="images/jm.png" alt="Joe Mauer" onClick="updateLine('Joe Mauer')">
+	<img src="images/er.png" alt="Eddie Rosario" onClick="updateLine('Eddie Rosario')">
+	<img src="images/twins.png" alt="Twins" onClick="updateLine('Minnesota Twins')">
+	
+	<div id="lineChart">
+		
+	</div>
+	
+	
+	<button id="previous">Previous</button>
+	<span id="currMonth">July</span>
+	<button id="next">Next</button>
+	
+	<div id="barChart">
+	</div>
+	
+	<script src="lineChart.js"></script>
+	<script src="barChart.js"></script>
+	<script src="changeMonth.js"></script>

@@ -8,16 +8,19 @@
 
 
 body {
-	background-color: #000000;
+	background-color: #eceeef;
 	font-family: "Roboto", sans-serif;
+	color: #000000;
 	font-size: 11pt;
 	margin: 0;
 }
 
 div.wrapper {
+	background-color: #ffffff;
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
+	border: 1px solid lightgrey;
 }
 
 header {
@@ -25,37 +28,32 @@ header {
 }
 
 div#lead-banner {
-	max-height: 600px;
+	height: 100%;
+	width: 100%;
 	overflow: hidden;
 	position: relative;
 }
 
 div#lead-banner > img {
-	width: 100%;
-	background-attachment: fixed;
-
+	width: 75%;
 }
 
 
 .main-nav {
-	background-color: #000000;
-	color: #ffffff;
-	padding: 5px 0 5px 0;
-	text-align: right;
-	margin: 0px;
-	line-height: 50px;
+	float: right;
+	height: 100%;
+	margin: 0 2% 0 0;
 }
 
 .main-nav > li {
-	background-color: #B8204E;
 	display: inline-block;
-	padding: 0 25px 0 20px;	
-	margin: 0 20px 0 -23px;
-	font-size: 12pt;
+	background-color: #B8204E;
+	margin: -5px 0 0 0;;
+	padding: 20px;
+	transform: skewX(-20deg);
 		-ms-transform: skewX(-20deg);
 		-webkit-transform: skewX(-20deg);
-		transform: skewX(-20deg);
-
+	font-size: 12pt;
 }
 
 .main-nav > li > a {
@@ -72,43 +70,100 @@ div#lead-banner > img {
 
 .logo {
 	float: left;
-	padding-left: 25px;	
+	margin-left: 15px;
+	padding: 5px;
 	font-family: 'Glegoo', serif;
 	text-transform: uppercase;
-	font-size: 15pt;
+	font-size: 14pt;
 	color: #ffffff;
 	font-weight: bold;
 	letter-spacing: 2px;
 }
 
 .title {
+	width: 460px;
+	text-align: justify;
 	position: absolute;
-	top: 50%;
-	left: 1%;
-	padding: 30px;
-	text-align: left;
-	font-family: 'Roboto Condensed', serif;
+	bottom: 15%;
+	right: 5%;
+	color: #000000;
+	padding: 10px;
+	
+}
+
+.title > h1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 35pt;
+	text-align: center;
 	text-transform: uppercase;
-	font-size: 100px;
-	color: #ffffff;
-	text-shadow: 1px 1px #000000;
-	line-height: 75pt;
+	line-height: 10px;
+	letter-spacing: 1px;
 }
 
 .section {
 	background-color: #000000;
 	color: #ffffff;
 	text-align: center;
-	padding: 30px;
+	padding: 10px;
 	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
-	font-size: 50px;
+	font-size: 40px;
 }
+
+figure {
+	display: inline-block;
+	margin: 8px;
+}
+
+figcaption, .player {
+	font-size: 11px;
+	color: #6E6E6E;
+	text-transform: uppercase;
+}
+
+figure > img:hover {
+	opacity: 0.5;
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+
+.row {
+	margin-top: 10px;
+	text-align: center;
+}
+
 
 #about {
 	padding: 25px;
 	color: #ffffff;
 }
+
+#navbar {
+	width: 100%;
+	height: 50px;
+	margin: 0;
+	background-color: #000;
+	overflow: hidden;
+	border-bottom: 1px solid white;
+}
+
+#currMonth {
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	font-size: 15pt;
+	font-family: 'Roboto Condensed';
+}
+
+#previous, #next {
+	border: none;
+	height: 50px;
+	padding: 5px;
+	font-size: 12pt;
+	background-color: transparent;	
+}
+
 
 .axis path,
 .axis line {
@@ -118,42 +173,65 @@ div#lead-banner > img {
 }
 
 .axis {
-	font-size: 10px;
+	font-size: 12px;
 }
 
 
 .line {
 	fill: none;
-	stroke: steelblue;
+	stroke: #ff9900;
 	stroke-width: 3px;
 }
 
 
 .dot {
-	fill: red;
+	fill: none;
+	stroke: #ff9900;
+	stroke-width: 2px;
+}
+
+.dot:hover {
+	fill: #FE4A49;
+	transition: all 0.3s linear;
+}
+
+.bar {
+	opacity: 0.8;
+}
+
+.bar:hover {
+	opacity: 1;
+	transition: all 0.4s linear;
+}
+
+.x.axis text {
+	fill: #000000;
+}
+
+.y.axis text {
+	fill: #000000;
 }
 
 
 div#lineChart {
-	border: 1px solid #ccc;
-	padding: 100px;
+	padding: 5px 100px 20px 100px;
+	background-color: #F5F5F5;
 }
 
 div#barChart {
-	border: 1px solid #ccc;
-	padding: 100px;
+	padding: 5px 100px 20px 100px;
+	background-color: #F5F5F5;
 }
 
 
-div.tooltip {	
+.tooltip {	
     position: absolute;			
-    text-align: center;			
-    width: 60px;					
-    height: 50px;					
-    padding: 2px;				
-    font: 12px sans-serif;		
-    background: lightsteelblue;	
-    border: solid #000 1px;		
-    border-radius: 8px;			
+    text-align: center;							
+    padding: 5px;
+	background-color: #000000;
+	font-size: 11px;
+	color: #ffffff;
+	border: 1px solid #ffffff;
     pointer-events: none;			
 }
+

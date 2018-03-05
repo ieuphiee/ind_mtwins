@@ -1,17 +1,15 @@
-/*var margin = {top: 20, right: 20, bottom: 40, left: 150},
-	width = 600 - margin.left - margin.right,
-	height = 400 - margin.top - margin.bottom;*/
-
 var bar_x_scale = d3.scale.linear().rangeRound([0, width]);
 var bar_y_scale =  d3.scale.ordinal().rangeRoundBands([0, height], .1, .5);
 
 var bar_x_axis = d3.svg.axis()
 	.scale(bar_x_scale)
-	.orient("top");
+	.orient("top")
+	.ticks(6);
 
 var bar_y_axis = d3.svg.axis()
 	.scale(bar_y_scale)
-	.orient("left");
+	.orient("left")
+	.ticks(6);
 
 var colors = d3.scale.category10();
 
@@ -21,28 +19,31 @@ var bar_svg = d3.select("#barChart").append("svg")
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var tooltip = d3.select("#barChart")
+			.append("div")
+			.attr("class", "tooltip")
+			.style("opacity", 0); 
+
 d3.csv("data.csv", function(error, data) {
-	data = data.filter(function(d) { return d.Split === "May"; });
+	data = data.filter(function(d) { return d.Split === "April/March"; });
 	data.forEach(function(d) {
 		d.BA = +d.BA;
 		if (error) throw error;
 		
 	});
 	
-	data.sort(function(a, b) { return b.BA - a.BA; });
+	//data.sort(function(a, b) { return b.BA - a.BA; });
 	
 	bar_x_scale.domain([0, d3.max(data, function(d) { return d.BA; })]);
 	bar_y_scale.domain(data.map(function(d) { return d.Player; }));
 	
 	bar_svg.append("g")
 		.attr("class", "x axis")
-		//.attr("transform", "translate(0," + 0 + ")")
 		.call(bar_x_axis);
 	
 	bar_svg.append("g")
 		.attr("class", "y axis")
-		//.attr("transform", "translate(0," + 0	 + ")")
-		.call(bar_y_axis)
+		.call(bar_y_axis);
 	  
 	
 	bar_svg.selectAll(".bar")
@@ -65,14 +66,17 @@ function updateBar(month) {
 		if (error) throw error;
 		
 	});
-	
-	data.sort(function(a, b) { return b.BA - a.BA; });
-	
+		
+		//data.sort(function(a, b) { return b.BA - a.BA; });
+		
 	bar_x_scale.domain([0, d3.max(data, function(d) { return d.BA; })]);
 	bar_y_scale.domain(data.map(function(d) { return d.Player; }));
-
-	 var bars = bar_svg.selectAll(".bar").data(data, function(d) { return d.Player; })
-	  bars.exit()
+		
+	bar_svg.select('.x.axis').transition().duration(300).call(bar_x_axis);
+  	bar_svg.select(".y.axis").transition().duration(300).call(bar_y_axis);
+	var bars = bar_svg.selectAll(".bar").data(data, function(d) { return d.Player; });
+		
+		bars.exit()
     .transition()
       .duration(700)
     .attr("y", bar_y_scale(0))
@@ -86,6 +90,7 @@ function updateBar(month) {
     .attr("y",  bar_y_scale(0))
     .attr("height", height - bar_y_scale(0));
 
+	  
   // the "UPDATE" set:
   	bars.transition().duration(700).ease("cubic")
 	.attr("x", 0) // (d) is one item from the data array, x is the scale object from above

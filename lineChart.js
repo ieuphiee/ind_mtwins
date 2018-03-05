@@ -1,4 +1,4 @@
-var margin = {top: 20, right: 20, bottom: 40, left: 150},
+var margin = {top: 20, right: 20, bottom: 60, left: 150},
 	width = 600 - margin.left - margin.right,
 	height = 400 - margin.top - margin.bottom;
 
@@ -20,7 +20,6 @@ var line = d3.svg.line()
 var tooltip = d3.select("#lineChart")
 			.append("div")
 			.attr("class", "tooltip")
-			.style("background-color", "white")
 			.style("opacity", 0); 
 
 var line_svg = d3.select("#lineChart").append("svg")
@@ -44,19 +43,29 @@ d3.csv("data.csv", function(error, data) {
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(line_x_axis);
-
+	
+	line_svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", height + margin.top) 
+		.attr("dy", 30)
+        .attr("text-anchor", "middle")
+		.style("font-size", "11pt")
+		.style("font-weight", "bold")
+		.attr("class", "player")
+        .text("Joe Mauer");
+	
 	line_svg.append("g")
 		.attr("class", "y axis")
-		.style("fill", "white")
 		.call(line_y_axis)
 	  .append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", -6)
-		.attr("dy", "1.2em")
-		.attr("text-anchor", "end")
-		.text("Batting Average");
-		
-	
+		.attr("y", 0 - margin.left/2.5)
+		.attr("x", 0 - height/2)
+		.attr("dy", "1em")
+		.style("text-anchor", "middle")
+		.style("fill", "black")
+		.text("Batting Average");      
+
 
 	line_svg.append("path")
 		.datum(data)
@@ -67,14 +76,14 @@ d3.csv("data.csv", function(error, data) {
 		.data(data)
 	  .enter().append("circle")
 		.attr("class", "dot")
-		.attr("r", 3.5)
+		.attr("r", 4)
 		.attr("cx", function(d) { return line_x_scale(d.Split); })
 		.attr("cy", function(d) { return line_y_scale(d.BA); })
 	.on("mouseover", function (d) {
 		tooltip.transition()
 			.duration(200)
 			.style("opacity", 1);
-		tooltip.html("Batting Average: " + d.BA)
+		tooltip.html("<strong>Batting Average: </strong>" + "\<font color=\"red\"\>" +d.BA)
 			//.style("font-size", "80%")
 			.style("left", (d3.event.pageX) + "px")
 			.style("top", (d3.event.pageY) + "px");
@@ -114,11 +123,14 @@ function updateLine(player) {
 		.duration(750)
 		.call(line_y_axis);
 		
+	line_svg.select(".player")
+		.text(player);
+		
 	d3.selectAll(".dot")
 		.data(data)
 		.transition()
 		.duration(750)
-		.attr("r", 3.5)
+		.attr("r", 4)
 		.attr("cx", function(d) { return line_x_scale(d.Split); })
 		.attr("cy", function(d) { return line_y_scale(d.BA); });
 		
