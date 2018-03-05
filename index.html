@@ -10,10 +10,7 @@
 	
 	<!-- Scripts -->
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
 	<script src="https://d3js.org/d3.v3.min.js"></script>
-	<!--<script src="http://d3js.org/d3.v4.min.js"></script>-->
-  	<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 	<script src="lineChart.js"></script>
 	<script src="barChart.js"></script>
 	
@@ -23,6 +20,7 @@
 	
 
 	<header>
+	<!------------------------------------ Navigation bar ------------------------------------>
 	<div id="navbar">
 		<div class="logo">John's Sports Bar | Minnesota Twins</div>
 		<ul class="main-nav">
@@ -31,48 +29,46 @@
 			<li><a href="#">Contact</a></li>
 		</ul>
 	</div>
-		
-		
-		
-			<div id="lead-banner">
-				<img src="images/06-grad.png">
-				
-				<div class="title">
-				<center><img src="images/twins-large.png"> </center>
-				<h1>The Minnesota Twins</h1>
-				The Minnesota Twins are an American professional baseball team based in Minneapolis, Minnesota. The Twins compete in Major League Baseball as a member club of the American League Central division. The team is named after the Twin Cities area comprising Minneapolis and St. Paul. The 2017 Minnesota Twins season was the 57th season for the franchise in the Twin Cities of Minnesota, their 8th season at Target Field, and their 117th overall in the American League. The Twins began the season on April 3rd at home against the Kansas City Royals and finished the year on October 1st at home against the Detroit Tigers.</div>
-			</div>
-		
+	
+	<!------------------------------------ Banner + Entrance Blurb ------------------------------------>
+	<div id="lead-banner">
+		<img src="images/06-grad.png">
+		<div class="blurb">
+			<center><img src="images/twins-large.png"></center>
+			<h1>The Minnesota Twins</h1>
+			The Minnesota Twins are an American professional baseball team based in Minneapolis, Minnesota. The Twins compete in Major League Baseball as a member club of the American League Central division. The team is named after the Twin Cities area comprising Minneapolis and St. Paul. The 2017 Minnesota Twins season was the 57th season for the franchise in the Twin Cities of Minnesota, their 8th season at Target Field, and their 117th overall in the American League. The Twins began the season on April 3rd at home against the Kansas City Royals and finished the year on October 1st at home against the Detroit Tigers.
+		</div>
+	</div>	
 	</header>
 	
 	<div class="wrapper">
-		
+		<!------------------------------------ Batting Averages/Player ------------------------------------>
 		<div class="section">2017-2018 Batting Averages</div>
 		<div class="row">
-			Click on a player's profile to view their batting averages.<br>
+			Click on a player's profile to view their batting averages.<br><br>
 			<figure><img src="images/twins.png" alt="Minnesota Twins" onClick="updateLine('Minnesota Twins')"><figcaption>Minnesota Twins</figcaption></figure>
 			<figure><img src="images/jm.png" alt="Joe Mauer" onClick="updateLine('Joe Mauer')"><figcaption>Joe Mauer</figcaption></figure>
 			<figure><img src="images/bb.png" alt="Byron Buxton" onClick="updateLine('Byron Buxton')"><figcaption>Byron Buxton</figcaption></figure>
 			<figure><img src="images/bd.png" alt="Brian Dozier" onClick="updateLine('Brian Dozier')"><figcaption>Brian Dozier</figcaption></figure>
 			<figure><img src="images/er.png" alt="Eddie Rosario" onClick="updateLine('Eddie Rosario')"><figcaption>Eddie Rosario</figcaption></figure>
 		</div>
-		<div id="lineChart">
+		<div id="lineChart"><!-- Line chart goes here --></div>
 		
-
-		</div>
+		<!------------------------------------ Batting Average Cross Comparison ------------------------------------>
 		<div class="section">Player Comparison</div>
 		<div class="row">
-			<button id="previous"><i class="fas fa-chevron-circle-left"></i></button>
-			<span id="currMonth">April/March</span>
+			Compare each player's batting average with the team's average for the 2017-2018 season.<br><br>
+			<button id="previous" style="visibility: hidden;"><i class="fas fa-chevron-circle-left"></i></button>
+			<span id="monthSelector">April/March</span>
 			<button id="next"><i class="fas fa-chevron-circle-right"></i></button>
 		</div>
-		<div id="barChart">
-		
-
-		</div>
+		<div id="barChart"><!-- Bar chart goes here--></div>
 	</div>
+	
+	
 <script src="lineChart.js"></script>
 <script src="barChart.js"></script>
-<script src="changeMonth.js"></script>
+
+
 </body>
 </html>
