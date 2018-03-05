@@ -124,9 +124,10 @@ function updateLine(player) {
 		// Set up x and y domains
 		line_x_scale.domain(data.map(function(d) { return d.Split; }));
 		line_y_scale.domain([0, d3.max(data, function(d) { return d.BA; })]);
-
+		
 		var line_svg = d3.select("#lineChart").transition();
 
+		 
 		// Update line
 		line_svg.select(".line") 
 			.duration(750)
@@ -155,5 +156,8 @@ function updateLine(player) {
 			.attr("cx", function(d) { return line_x_scale(d.Split); })
 			.attr("cy", function(d) { return line_y_scale(d.BA); });
 
+		
+		
+		
 	});
 }

@@ -108,7 +108,7 @@ function updateBar(month) {
 		
 	var bars = bar_svg.selectAll(".bar")
 		.data(data, function(d) { return d.Player; });
-	
+			
 	// vvvv Update bars vvvvv //
 		
 	bars.exit()
