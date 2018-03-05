@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Glegoo|Oswald|Roboto|Roboto+Condensed');
 
 body {
-	background-color: #eceeef;
+	background-color: #F7F7F7;
 	font-family: "Roboto", sans-serif;
 	font-size: 11pt;
 	color: #000000;
@@ -18,7 +18,7 @@ header {
 	margin: 0;
 	overflow: hidden;
 	background-color: #000000;
-	border-bottom: 1px solid white;
+	
 }
 
 .main-nav {
@@ -47,16 +47,18 @@ header {
 
 .main-nav > li:hover {
 	background-color: #ff9900;
+	border-right: 2px solid white;
 	transition: all 0.3s ease;
 }
 
 .logo {
 	float: left;
-	margin-left: 15px;
+	margin-top: 2px;
+	margin-left: 10px;
 	padding: 5px;
 	font-family: 'Glegoo', serif;
 	text-transform: uppercase;
-	font-size: 14pt;
+	font-size: 15pt;
 	color: #ffffff;
 	font-weight: bold;
 	letter-spacing: 2px;
@@ -147,17 +149,22 @@ figure > img:hover {
 	height: 50px;
 	padding: 5px;
 	font-size: 12pt;
-	background-color: transparent;	
+	background-color: transparent;
+}
+
+#previous:hover, #next:hover {
+	color: #ff9900;
+	transition: all 0.3s ease;
 }
 
 
 #lineChart {
-	padding: 5px 100px 20px 100px;
+	padding: 10px 100px 20px 100px;
 	background-color: #F5F5F5;
 }
 
 #barChart {
-	padding: 5px 100px 20px 100px;
+	padding: 10px 100px 20px 100px;
 	background-color: #F5F5F5;
 }
 
